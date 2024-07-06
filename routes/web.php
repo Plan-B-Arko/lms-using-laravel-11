@@ -28,6 +28,10 @@ Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admi
 
 });// admin groupp middleware
 
+// out side middle ware route for login page
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
+
 // instructor group middleware
 Route::middleware(['auth','roles:instructor'])->group(function(){
 
