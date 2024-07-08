@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/header-colors.css') }}" />
+    {{-- for t0ster start css cdn --}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    {{-- for t0ster end css cdn --}}
     <title> Admin Dashboard </title>
 </head>
 
@@ -32,14 +35,14 @@
     <!--wrapper-->
     <div class="wrapper">
         <!--sidebar wrapper -->
-         @include('admin.body.sidebar')
+        @include('admin.body.sidebar')
         <!--end sidebar wrapper -->
         <!--start header -->
-       @include('admin.body.header')
+        @include('admin.body.header')
         <!--end header -->
         <!--start page wrapper -->
         <div class="page-wrapper">
-           @yield('admin')
+            @yield('admin')
         </div>
         <!--end page wrapper -->
         <!--start overlay-->
@@ -70,6 +73,33 @@
     <script>
         new PerfectScrollbar(".app-container")
     </script>
+    {{-- for toaster script with cdn start  --}}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script>
+
+    {{-- for toaster script with cdn end  --}}
 </body>
 
 </html>
