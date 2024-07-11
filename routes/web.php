@@ -32,7 +32,7 @@ Route::post('/admin/password/update', [AdminController::class, 'AdminPasswordUpd
 
 });// admin groupp middleware
 
-// out side middle ware route for login page
+// out side middle ware route for login page admin
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
 
@@ -40,5 +40,13 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.
 Route::middleware(['auth','roles:instructor'])->group(function(){
 
 Route::get('/instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('instructor.dashboard');
+Route::get('/instructor/logout', [InstructorController::class, 'InstructorLogout'])->name('instructor.logout');
+Route::get('/instructor/profile', [InstructorController::class, 'InstructorProfile'])->name('instructor.profile');
+Route::post('/instructor/profile/store', [InstructorController::class, 'InstructorProfileStore'])->name('instructor.profile.store');
+Route::get('/instructor/change/password', [InstructorController::class, 'InstructorChangePassword'])->name('instructor.change.password');
+Route::post('/instructor/password/update', [InstructorController::class, 'InstructorPasswordUpdate'])->name('instructor.password.update');
 
-});// instructor groupp middleware
+});// instructor group middleware
+
+// out side middleware route for login page instructor
+Route::get('/instructor/login', [InstructorController::class, 'InstructorLogin'])->name('instructor.login');
